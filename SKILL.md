@@ -15,6 +15,8 @@ metadata:
 승인/보고 지점에서는 사용자의 확인 없이 다음 단계로 넘어가지 않는다.
 
 ## 핵심 워크플로우 (docs/rules) — 항상 적용
+- **이 프로젝트에서 처음 실행하는 경우**, 먼저 [docs/rules/project-setup.md](docs/rules/project-setup.md)에
+  따라 구조화된 선택형 질문으로 어댑터를 확정받는다. 이미 채워져 있으면 건너뛴다.
 - 전체 순서: [docs/rules/branch-workflow.md](docs/rules/branch-workflow.md)
   (기존 코드 읽기 → 이슈 생성 → 기획서 작성 → 검토 → 브랜치 생성 → 구현 → 코드 리뷰 →
   QA/QC → 문제 보고 → 검토 → 완료 보고 → PR)
