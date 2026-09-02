@@ -2,9 +2,24 @@
 
 [English](README.md) | 한국어
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Claude Code](https://img.shields.io/badge/Claude%20Code-Skill%20%2F%20Plugin-5A45FF)](SKILL.md)
+[![Scope](https://img.shields.io/badge/Scope-Backend-blue)](#이-워크플로우가-가정하는-것--안-하는-것)
+
 > AI한테 "이거 구현해줘" 던지고 풀바이브로 맡기기엔 아직 불안한 개발자를 위한 워크플로우
 > 하네스입니다. 하나의 기능에만 집중해서, 기획서를 먼저 검토하고, 승인받은 범위 안에서만
 > 구현하고, 코드 리뷰와 QA를 거쳐 PR까지 가는 흐름을 문서로 강제합니다.
+
+## 목차
+- [왜 필요한가요?](#왜-필요한가요)
+- [왜 가벼운가요](#왜-가벼운가요)
+- [구조: core와 adapter](#구조-core와-adapter)
+- [시작하기](#시작하기)
+- [스크린샷 & 데모](#스크린샷--데모)
+- [폴더 구조](#폴더-구조)
+- [이 워크플로우가 가정하는 것 / 안 하는 것](#이-워크플로우가-가정하는-것--안-하는-것)
+- [🔌 이렇게 확장해보면 좋아요~!](#-이렇게-확장해보면-좋아요)
+- [라이선스/출처](#라이선스출처)
 
 ## 왜 필요한가요?
 
@@ -20,6 +35,24 @@ AI 에이전트에게 기능 구현을 맡기면 종종 묻지도 않고 여러 
   이어갈 수 있다
 - 기획과 실제 코드가 달라지면 **"구현 세부사항"인지 "설계 변경"인지부터 분류**한다 — 후자면
   구현을 멈추고 재승인부터 받는다
+
+## 왜 가벼운가요
+
+많은 스킬/플러그인 마켓플레이스는 수백 개의 스킬, Python 도구, 레퍼런스 문서를 한 번에
+번들로 설치합니다 — 실제로 쓸지 안 쓸지와 무관하게 프로젝트에 처음부터 그만큼의 컨텍스트가
+얹힙니다. 이 하네스는 반대로 갑니다: 한 번에 다 읽히는 게 아니라, 필요한 조각만 그때그때
+읽히도록 만들었습니다.
+
+- 진입점인 `SKILL.md`는 **약 50줄**입니다. 워크플로우 전체를 안에 다 욱여넣지 않고,
+  필요한 문서를 가리키기만 합니다.
+- 항상 켜져 있는 core(`docs/rules/`)는 **파일 10개, 총 약 700줄**입니다.
+  `branch-workflow.md`의 각 단계는 그 순간에 필요한 규칙 파일 딱 하나만 링크로 가리킵니다
+  — 모든 규칙을 한꺼번에 컨텍스트에 밀어 넣지 않습니다.
+- 안 쓰는 어댑터는 그냥 방치되지 않습니다 — [첫 실행 인터뷰](docs/rules/project-setup.md)에서
+  안 쓴다고 답한 선택 어댑터(외부 문서 동기화/API 클라이언트 컬렉션/리뷰 봇) 파일을 **그
+  자리에서 삭제**합니다. 저장소에 남는 건 실제로 쓰는 것뿐입니다.
+- 번들 스크립트도, 레퍼런스 문서 라이브러리도, 페르소나 카탈로그도 없습니다 — 코딩
+  에이전트가 필요할 때 읽는 마크다운 규칙뿐입니다.
 
 ## 구조: core와 adapter
 
@@ -142,11 +175,36 @@ AI 에이전트에게 기능 구현을 맡기면 종종 묻지도 않고 여러 
 별도의 "실행" 명령어는 없습니다 — 기능을 설명하기만 하면 나머지는 승인 게이트가 알아서
 굴러갑니다.
 
+## 스크린샷 & 데모
+
+<!--
+docs/assets/ 아래에 정확히 이 이름으로 파일을 넣으면 다른 수정 없이 바로 여기에
+나타납니다 (자세한 내용은 docs/assets/README.md 참고):
+  - docs/assets/screenshot.png  → 스크린샷 한 장 (예: 승인 게이트 프롬프트 화면)
+  - docs/assets/demo.gif        → 짧고 소리 없이 반복 재생되는 데모 (GitHub 렌더러에서
+                                    실제로 자동 재생되는 건 GIF뿐이고, 같은 방식으로 넣은
+                                    mp4는 재생되지 않습니다)
+
+더 긴 사용법 영상을 넣고 싶다면 GIF 대신/추가로 아래 두 방법 중 하나를 씁니다:
+  1. 영상을 녹화한 뒤, GitHub 웹 UI에서 README.md를 편집하는 화면에 그 영상 파일을
+     드래그 앤 드롭합니다. GitHub이 호스팅하면서
+     `https://github.com/<owner>/<repo>/assets/...` 형태의 URL로 바꿔주는데, 이 URL을
+     이 파일에 그대로 붙여넣으면 GitHub이 자동으로 인라인 플레이어로 렌더링합니다.
+  2. YouTube에 올리고 클릭 가능한 썸네일로 연결합니다:
+     [![데모 보기](docs/assets/thumbnail.png)](https://youtu.be/VIDEO_ID)
+-->
+
+![승인 게이트 흐름 스크린샷](docs/assets/screenshot.png)
+
+![데모](docs/assets/demo.gif)
+
 ## 폴더 구조
 
 ```
 .
 ├── CLAUDE.md                        # 진입점 — core/adapter 문서를 참조하라는 지시
+├── SKILL.md                         # Claude Code 스킬/플러그인용 진입점
+├── LICENSE                          # MIT
 ├── docs/
 │   ├── rules/                       # core — 스택이 바뀌어도 유지되는 구조적 규칙
 │   │   ├── branch-workflow.md       # 0~15단계 전체 워크플로우 (🔌 훅 포인트 표 포함)
@@ -168,10 +226,11 @@ AI 에이전트에게 기능 구현을 맡기면 종종 묻지도 않고 여러 
 │   │   ├── api-client-collection.md # 선택 — 예: Postman 컬렉션 구조
 │   │   └── review-bot.md            # 선택 — 예: CodeRabbit
 │   ├── skills/                      # 프로젝트 전용 작업 절차를 쌓아두는 폴더
-│   └── templates/
-│       ├── issue-feature.md         # 기능 이슈 템플릿
-│       ├── issue-bug.md             # 버그 이슈 템플릿
-│       └── pull-request.md          # PR 템플릿
+│   ├── templates/
+│   │   ├── issue-feature.md         # 기능 이슈 템플릿
+│   │   ├── issue-bug.md             # 버그 이슈 템플릿
+│   │   └── pull-request.md          # PR 템플릿
+│   └── assets/                      # screenshot.png / demo.gif / thumbnail.png 위치
 ```
 
 ## 이 워크플로우가 가정하는 것 / 안 하는 것
@@ -203,6 +262,8 @@ AI 에이전트에게 기능 구현을 맡기면 종종 묻지도 않고 여러 
   트리거하도록 설정을 좁히는 걸 권장합니다.
 
 ## 라이선스/출처
+
+MIT — [LICENSE](LICENSE) 참고.
 
 - `docs/rules/sentence-refinement.md`는 [toss/technical-writing](https://github.com/toss/technical-writing)의
   "문장 다듬기" 챕터를 재구성한 것입니다(CC BY-NC-SA 4.0, Viva Republica, Inc.).

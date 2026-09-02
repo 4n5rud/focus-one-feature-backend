@@ -2,10 +2,25 @@
 
 English | [한국어](README.ko.md)
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Claude Code](https://img.shields.io/badge/Claude%20Code-Skill%20%2F%20Plugin-5A45FF)](SKILL.md)
+[![Scope](https://img.shields.io/badge/Scope-Backend-blue)](#what-this-workflow-assumes--doesnt-assume)
+
 > A workflow harness for developers who are still uneasy handing a feature over to full
 > "vibe coding". It forces a discipline: focus on one feature at a time, get the plan
 > reviewed before writing code, implement only within the approved scope, and go through
 > code review and QA before opening a PR.
+
+## Contents
+- [Why this exists](#why-this-exists)
+- [Why it's lightweight](#why-its-lightweight)
+- [Structure: core vs. adapter](#structure-core-vs-adapter)
+- [Getting Started](#getting-started)
+- [Screenshot & demo](#screenshot--demo)
+- [Folder structure](#folder-structure)
+- [What this workflow assumes / doesn't assume](#what-this-workflow-assumes--doesnt-assume)
+- [🔌 Extending it further](#-extending-it-further)
+- [License / credits](#license--credits)
 
 ## Why this exists
 
@@ -24,6 +39,25 @@ gates) into that process and enforces:
 - When the plan and the actual code diverge, **classify the change first**: is it an
   "implementation detail" or a "design change"? The latter halts implementation until
   re-approved
+
+## Why it's lightweight
+
+A lot of skill/plugin marketplaces bundle hundreds of skills, Python tools, and
+reference docs into one install, whether or not you'll ever touch most of them — that's
+context sitting in your project from day one. This harness is the opposite: it's built
+to be read piece by piece, not loaded all at once.
+
+- `SKILL.md`, the entry point, is **~50 lines**. It only points at files — it doesn't
+  try to inline the whole workflow.
+- The always-on core (`docs/rules/`) is **~700 lines across 10 files**. Each step of
+  `branch-workflow.md` links to exactly one rule file when it's relevant, instead of
+  dumping every rule into context up front.
+- Adapters you don't use don't just sit there unused — the [first-run interview](docs/rules/project-setup.md)
+  **deletes** the optional adapter files (external doc sync, API client collection,
+  review bot) you say you don't need. What's left in your repo is only what you
+  actually use.
+- No bundled scripts, no reference-doc library, no persona catalog — just markdown
+  rules a coding agent reads on demand.
 
 ## Structure: core vs. adapter
 
@@ -153,12 +187,36 @@ interrupted, just resume and it re-reads the issue to see where it left off.
 There's no separate "trigger" command — just describe the feature and let the gates do
 their job.
 
+## Screenshot & demo
+
+<!--
+Drop files into docs/assets/ with these exact names and they'll show up here with no
+other edits needed — see docs/assets/README.md for details:
+  - docs/assets/screenshot.png  → a single screenshot (e.g. an approval-gate prompt)
+  - docs/assets/demo.gif        → a short, silent, looping demo (GIFs are what actually
+                                    autoplay inline in GitHub's renderer; an mp4 embedded
+                                    the same way will not)
+
+For a longer walkthrough video, you have two options instead of/alongside the GIF:
+  1. Record it, then drag-and-drop the video file into README.md while editing it in
+     GitHub's web UI. GitHub hosts it and rewrites it into a
+     `https://github.com/<owner>/<repo>/assets/...` URL you can drop straight into this
+     file — GitHub renders that as an inline player automatically.
+  2. Upload it to YouTube and use a clickable thumbnail instead:
+     [![Watch the demo](docs/assets/thumbnail.png)](https://youtu.be/VIDEO_ID)
+-->
+
+![Approval-gate walkthrough screenshot](docs/assets/screenshot.png)
+
+![Demo](docs/assets/demo.gif)
+
 ## Folder structure
 
 ```
 .
 ├── CLAUDE.md                        # entry point — points to the core/adapter docs
 ├── SKILL.md                         # entry point for Claude Code skill/plugin use
+├── LICENSE                          # MIT
 ├── docs/
 │   ├── rules/                       # core — structural rules that survive a stack change
 │   │   ├── branch-workflow.md       # the full 0–15 step workflow (includes the 🔌 hook table)
@@ -180,10 +238,11 @@ their job.
 │   │   ├── api-client-collection.md # optional — e.g. Postman collection structure
 │   │   └── review-bot.md            # optional — e.g. CodeRabbit
 │   ├── skills/                      # where project-specific procedures accumulate
-│   └── templates/
-│       ├── issue-feature.md         # feature issue template
-│       ├── issue-bug.md             # bug issue template
-│       └── pull-request.md          # PR template
+│   ├── templates/
+│   │   ├── issue-feature.md         # feature issue template
+│   │   ├── issue-bug.md             # bug issue template
+│   │   └── pull-request.md          # PR template
+│   └── assets/                      # screenshot.png / demo.gif / thumbnail.png go here
 ```
 
 ## What this workflow assumes / doesn't assume
@@ -216,6 +275,8 @@ after QA (step 10) or after the PR (step 15).
   fast, so it's worth narrowing the trigger to only run once a PR is ready.
 
 ## License / credits
+
+MIT — see [LICENSE](LICENSE).
 
 - `docs/rules/sentence-refinement.md` is adapted from the "Sentence Refinement" chapter
   of [toss/technical-writing](https://github.com/toss/technical-writing)
