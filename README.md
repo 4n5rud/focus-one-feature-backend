@@ -1,5 +1,8 @@
 # Focus One Feature — Backend
 
+**by [4n5rud](https://github.com/4n5rud)** — distilled from a year and a half of
+hands-on work with AI coding agents.
+
 English | [한국어](README.ko.md)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
