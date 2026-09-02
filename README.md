@@ -19,7 +19,7 @@ English | [한국어](README.ko.md)
 - [Screenshot & demo](#screenshot--demo)
 - [Folder structure](#folder-structure)
 - [What this workflow assumes / doesn't assume](#what-this-workflow-assumes--doesnt-assume)
-- [🔌 Extending it further](#-extending-it-further)
+- [🔌 Extend as needed](#-extend-as-needed)
 - [License / credits](#license--credits)
 
 ## Why this exists
@@ -151,7 +151,7 @@ runs), open every file in `docs/adapters/` and replace the example tooling direc
   ```
 
 ### 4. How you actually talk to it
-Just describe the feature in plain language, e.g.:
+Describe the feature in plain language, e.g.:
 
 > Implement password reset via email for signed-up users.
 
@@ -252,11 +252,11 @@ For a longer walkthrough video, you have two options instead of/alongside the GI
 - **Not yet (frontend)**: this version is written around backend (API) feature work. A
   frontend-specific version is planned separately.
 
-## 🔌 Extending it further
+## 🔌 Extend as needed
 
 The core harness is deliberately kept minimal. The three optional hooks under
-`docs/adapters/` can be turned on or off per team. They usually fit naturally right
-after QA (step 10) or after the PR (step 15).
+`docs/adapters/` can be turned on or off per team. They usually fit right after QA
+(step 10) or after the PR (step 15).
 
 - **API doc sync** ([`external-doc-sync.md`](docs/adapters/external-doc-sync.md)) — if
   your team keeps a shared API spec somewhere like Notion or Confluence, add a step to
