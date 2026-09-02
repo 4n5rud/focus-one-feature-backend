@@ -1,6 +1,7 @@
 # assets
 
-Drop repo screenshots/media here — the root `README.md` / `README.ko.md` already point at
+Drop repo screenshots/media here — the root `README.md` (Korean, primary) / `README.en.md`
+already point at
 these filenames, so adding a file with the right name makes it show up with no other
 edits needed:
 
