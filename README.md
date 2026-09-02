@@ -1,7 +1,6 @@
 # Focus One Feature — Backend
 
-**by [4n5rud](https://github.com/4n5rud)** — 1년 반 동안 AI 코딩 에이전트를 직접 굴리며
-쌓은 경험의 정수를 담았습니다.
+**by [4n5rud](https://github.com/4n5rud)** 
 
 [English](README.en.md) | 한국어
 
