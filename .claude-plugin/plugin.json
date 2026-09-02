@@ -1,0 +1,12 @@
+{
+  "name": "focus-one-feature-backend",
+  "description": "기능 단위 승인 게이트 워크플로우 하네스 (백엔드 전용, core/adapter 구조)",
+  "version": "1.0.0",
+  "author": {
+    "name": "4n5rud"
+  },
+  "homepage": "https://github.com/4n5rud/focus-one-feature-backend",
+  "repository": "https://github.com/4n5rud/focus-one-feature-backend",
+  "license": "MIT",
+  "skills": "./"
+}
