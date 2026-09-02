@@ -1,0 +1,33 @@
+{
+  "name": "focus-one-feature-backend",
+  "owner": {
+    "name": "4n5rud"
+  },
+  "description": "기능 단위 승인 게이트 워크플로우 하네스 (백엔드 전용, core/adapter 구조)",
+  "homepage": "https://github.com/4n5rud/focus-one-feature-backend",
+  "repository": "https://github.com/4n5rud/focus-one-feature-backend",
+  "metadata": {
+    "description": "이슈 1개=브랜치 1개=기능 1개 승인 게이트, 이슈 체크박스 기반 진행 상태 외부화, 설계변경/구현세부 분리 판단을 core로 두고, 브랜치 전략/코드 스타일/테스트/마이그레이션/외부 문서 동기화/API 클라이언트 컬렉션/리뷰 봇은 교체 가능한 adapter로 분리한 워크플로우 하네스.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "focus-one-feature-backend",
+      "source": "./",
+      "description": "기능 단위 승인 게이트 워크플로우 하네스 (백엔드 전용, core/adapter 구조)",
+      "version": "1.0.0",
+      "author": {
+        "name": "4n5rud"
+      },
+      "keywords": [
+        "workflow",
+        "backend",
+        "approval-gate",
+        "code-review",
+        "issue-tracking",
+        "one-feature-at-a-time"
+      ],
+      "category": "development"
+    }
+  ]
+}
